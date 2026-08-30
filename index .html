@@ -1,0 +1,1775 @@
+<!DOCTYPE html>@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --lavender: #e8ddf5;
+    --lavender2: #d8c8e9;
+
+    --purple: #5b3a78;
+    --dark-purple: #39234f;
+
+    --cream: #fffdf7;
+
+    --gold: #c9a86a;
+    --gold-light: #ead7a8;
+
+    --text: #51435b;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+
+    color: var(--purple);
+
+    background: var(--lavender);
+}
+
+
+/* =========================================
+   PAGES
+========================================= */
+
+.page {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    overflow-y: auto;
+
+    opacity: 0;
+
+    transform: translateX(40px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+
+.page.active {
+
+    display: block;
+
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+
+/* =========================================
+   PAGE 1
+========================================= */
+
+.home {
+    background: var(--lavender);
+}
+
+
+.opening {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.eyebrow {
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    opacity: .6;
+
+    margin-bottom: 15px;
+}
+
+
+.opening h1 {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(38px, 8vw, 65px);
+
+    font-weight: 500;
+}
+
+
+.subtext {
+
+    margin-top: 8px;
+
+    font-size: 13px;
+
+    opacity: .6;
+}
+
+
+/* =========================================
+   ENVELOPE
+========================================= */
+
+.envelope-wrapper {
+
+    width: 340px;
+
+    height: 235px;
+
+    margin: 55px auto 30px;
+
+    perspective: 1000px;
+
+    cursor: pointer;
+}
+
+
+.envelope {
+
+    width: 100%;
+
+    height: 100%;
+
+    position: relative;
+
+    filter:
+        drop-shadow(
+            0 25px 30px rgba(60,35,80,.20)
+        );
+
+    transition:
+        transform .4s ease;
+}
+
+
+.envelope-wrapper:hover .envelope {
+
+    transform:
+        translateY(-7px);
+}
+
+
+/* Back */
+
+.envelope-back {
+
+    position: absolute;
+
+    inset: 0;
+
+    background: #f8f1e7;
+
+    border: 1px solid var(--gold-light);
+
+    border-radius: 5px;
+
+    z-index: 1;
+}
+
+
+/* Letter */
+
+.envelope-letter {
+
+    position: absolute;
+
+    width: 280px;
+
+    height: 190px;
+
+    left: 30px;
+
+    bottom: 12px;
+
+    background: var(--cream);
+
+    border: 1px solid #dfd0b5;
+
+    box-shadow:
+        0 10px 25px rgba(50,30,70,.16);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 28px;
+
+    letter-spacing: 2px;
+
+    z-index: 2;
+
+    transition:
+        transform 1.4s
+        cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* Flap */
+
+.envelope-flap {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 0;
+
+    height: 0;
+
+    border-left: 170px solid transparent;
+
+    border-right: 170px solid transparent;
+
+    border-top: 125px solid #f5ecdf;
+
+    transform-origin: top center;
+
+    z-index: 5;
+
+    transition:
+        transform 1s
+        cubic-bezier(.2,.7,.2,1);
+}
+
+
+/* Folds */
+
+.fold-left {
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    border-top: 118px solid transparent;
+
+    border-left: 170px solid #eee3f0;
+
+    z-index: 4;
+}
+
+
+.fold-right {
+
+    position: absolute;
+
+    right: 0;
+
+    bottom: 0;
+
+    border-top: 118px solid transparent;
+
+    border-right: 170px solid #eee3f0;
+
+    z-index: 4;
+}
+
+
+.fold-bottom {
+
+    position: absolute;
+
+    bottom: 0;
+
+    left: 0;
+
+    border-left: 170px solid transparent;
+
+    border-right: 170px solid transparent;
+
+    border-bottom: 120px solid #f4eadf;
+
+    z-index: 5;
+}
+
+
+/* Wax */
+
+.wax-seal {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 92px;
+
+    transform: translateX(-50%);
+
+    width: 53px;
+
+    height: 53px;
+
+    border-radius: 50%;
+
+    background: var(--gold);
+
+    border: 3px solid var(--gold-light);
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-shadow:
+        0 5px 15px rgba(70,45,20,.25);
+
+    z-index: 6;
+
+    transition: opacity .5s;
+}
+
+
+/* Open state */
+
+.envelope-wrapper.open
+.envelope-flap {
+
+    transform:
+        rotateX(180deg);
+
+    z-index: 1;
+}
+
+
+.envelope-wrapper.open
+.envelope-letter {
+
+    transform:
+        translateY(-175px);
+
+    z-index: 6;
+}
+
+
+.envelope-wrapper.open
+.wax-seal {
+
+    opacity: 0;
+}
+
+
+.touch-text {
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    opacity: .65;
+
+    animation:
+        breathe 2s infinite;
+}
+
+
+.touch-text span {
+
+    color: var(--gold);
+}
+
+
+/* =========================================
+   COMMON CONTENT
+========================================= */
+
+.content {
+
+    max-width: 720px;
+
+    margin: auto;
+
+    text-align: center;
+
+    padding: 70px 20px 100px;
+}
+
+
+.chapter {
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    opacity: .6;
+}
+
+
+.title {
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(50px, 10vw, 80px);
+
+    font-weight: 500;
+
+    margin: 12px 0;
+}
+
+
+.gold-line {
+
+    width: 70px;
+
+    height: 1px;
+
+    background: var(--gold);
+
+    margin: 20px auto 45px;
+}
+
+
+/* =========================================
+   STORY
+========================================= */
+
+.story-page {
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(255,255,255,.8),
+            transparent 30%
+        ),
+        var(--lavender);
+}
+
+
+.story-card,
+.strength-card,
+.real-letter {
+
+    background:
+        rgba(255,253,247,.94);
+
+    border:
+        1px solid #e3d5ba;
+
+    box-shadow:
+        0 25px 60px
+        rgba(65,40,80,.12);
+
+    padding: 45px;
+
+    text-align: left;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 21px;
+
+    line-height: 1.8;
+
+    color: var(--text);
+}
+
+
+.story-card p,
+.strength-card p,
+.real-letter p {
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   TEXT REVEAL
+========================================= */
+
+.reveal {
+
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+
+.reveal.visible {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+.final-line {
+
+    color: var(--purple);
+
+    text-align: center;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.next-btn {
+
+    margin-top: 35px;
+
+    padding:
+        13px 30px;
+
+    border:
+        1px solid var(--gold);
+
+    border-radius: 30px;
+
+    background:
+        transparent;
+
+    color: var(--purple);
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+
+    transition: .3s;
+}
+
+
+.next-btn:hover {
+
+    background: var(--purple);
+
+    color: white;
+}
+
+
+/* =========================================
+   STRENGTH PAGE
+========================================= */
+
+.strength-page {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #f4edfa,
+            var(--lavender)
+        );
+}
+
+
+.strength-page .content {
+
+    max-width: 800px;
+}
+
+
+.strength-title {
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(48px, 10vw, 82px);
+
+    line-height: .95;
+
+    font-weight: 500;
+
+    color: var(--dark-purple);
+
+    margin:
+        20px 0 25px;
+}
+
+
+.strength-card {
+
+    text-align: center;
+
+    background:
+        rgba(255,255,255,.38);
+
+    border: none;
+
+    box-shadow: none;
+
+    font-size: 22px;
+
+    padding: 20px 30px;
+
+    color: #594b63;
+}
+
+
+.strong-ending {
+
+    color: var(--purple);
+
+    font-size: 25px;
+}
+
+
+/* =========================================
+   PAGE 4
+========================================= */
+
+.letter-page {
+
+    background:
+        linear-gradient(
+            rgba(232,221,245,.85),
+            rgba(232,221,245,.85)
+        );
+}
+
+
+.airmail {
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    color: var(--gold);
+
+    margin-bottom: 10px;
+}
+
+
+.real-letter {
+
+    position: relative;
+
+    padding:
+        50px 45px;
+}
+
+
+.real-letter::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 18px;
+
+    right: 25px;
+
+    color: var(--gold);
+
+    font-size: 20px;
+}
+
+
+.thank-you {
+
+    text-align: center;
+
+    font-size: 35px;
+
+    color: var(--purple);
+}
+
+
+.special-line {
+
+    text-align: center;
+
+    color: var(--purple);
+
+    font-size: 24px;
+}
+
+
+.miss-you {
+
+    text-align: center;
+
+    font-size: 30px;
+
+    color: var(--purple);
+}
+
+
+.always {
+
+    text-align: center;
+
+    font-size: 28px;
+}
+
+
+.signature {
+
+    margin-top: 45px;
+
+    text-align: center;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 28px;
+
+    letter-spacing: 5px;
+
+    color: var(--purple);
+}
+
+
+/* =========================================
+   PAGE 5 � CAKE
+========================================= */
+
+.cake-page {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #76558f,
+            #39234f
+        );
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    overflow-y: auto;
+}
+
+
+.cake-content {
+
+    width: 100%;
+
+    max-width: 700px;
+
+    padding: 50px 20px;
+}
+
+
+.cake-small {
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    opacity: .7;
+}
+
+
+.cake-title {
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(50px, 10vw, 80px);
+
+    font-weight: 500;
+
+    margin: 10px 0;
+}
+
+
+.cake-subtitle {
+
+    opacity: .75;
+
+    letter-spacing: 2px;
+
+    font-size: 13px;
+}
+
+
+/* Cake */
+
+.cake {
+
+    width: 260px;
+
+    height: 190px;
+
+    margin:
+        60px auto 40px;
+
+    position: relative;
+}
+
+
+.cake-bottom {
+
+    position: absolute;
+
+    bottom: 0;
+
+    left: 0;
+
+    width: 260px;
+
+    height: 85px;
+
+    background: #fffdf7;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 15px 30px
+        rgba(0,0,0,.25);
+}
+
+
+.cake-middle {
+
+    position: absolute;
+
+    bottom: 70px;
+
+    left: 20px;
+
+    width: 220px;
+
+    height: 70px;
+
+    background: #d9c4e8;
+
+    border-radius:
+        10px 10px 6px 6px;
+}
+
+
+.cake-top {
+
+    position: absolute;
+
+    bottom: 125px;
+
+    left: 35px;
+
+    width: 190px;
+
+    height: 45px;
+
+    background: #fffdf7;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 7px 10px
+        rgba(0,0,0,.15);
+}
+
+
+/* Candles */
+
+.candles {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: 165px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 28px;
+
+    z-index: 5;
+}
+
+
+.candle {
+
+    width: 10px;
+
+    height: 38px;
+
+    background: var(--gold-light);
+
+    border-radius: 3px;
+
+    position: relative;
+}
+
+
+.flame {
+
+    position: absolute;
+
+    width: 14px;
+
+    height: 20px;
+
+    left: -2px;
+
+    top: -22px;
+
+    background: #ffd98a;
+
+    border-radius:
+        50% 50% 50% 50%;
+
+    box-shadow:
+        0 0 15px #ffd98a;
+
+    animation:
+        flame 1s infinite alternate;
+}
+
+
+.blown .flame {
+
+    display: none;
+}
+
+
+/* Wish button */
+
+.wish-button {
+
+    padding:
+        14px 32px;
+
+    border:
+        1px solid var(--gold-light);
+
+    border-radius: 30px;
+
+    background:
+        transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    letter-spacing: 1px;
+
+    transition: .3s;
+}
+
+
+.wish-button:hover {
+
+    background:
+        var(--gold-light);
+
+    color:
+        var(--dark-purple);
+}
+
+
+/* Final */
+
+.final-message {
+
+    display: none;
+
+    animation:
+        appear 1.5s ease;
+}
+
+
+.final-message.show {
+
+    display: block;
+}
+
+
+.final-message h2 {
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(40px, 8vw, 65px);
+
+    font-weight: 500;
+
+    margin-bottom: 25px;
+}
+
+
+.final-message p {
+
+    max-width: 600px;
+
+    margin:
+        0 auto 20px;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 21px;
+
+    line-height: 1.6;
+}
+
+
+.final-signature {
+
+    margin-top: 30px;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 28px;
+
+    letter-spacing: 4px;
+}
+
+
+.final-signature span {
+
+    font-size: 15px;
+
+    letter-spacing: 1px;
+
+    opacity: .7;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes breathe {
+
+    0%,100% {
+        opacity: .45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+@keyframes flame {
+
+    from {
+        transform:
+            scale(1);
+    }
+
+    to {
+        transform:
+            scale(1.15)
+            translateY(-2px);
+    }
+}
+
+
+@keyframes appear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:500px) {
+
+    .envelope-wrapper {
+
+        width: 290px;
+
+        height: 205px;
+    }
+
+
+    .envelope-flap {
+
+        border-left-width: 145px;
+
+        border-right-width: 145px;
+
+        border-top-width: 105px;
+    }
+
+
+    .fold-left {
+
+        border-left-width: 145px;
+
+        border-top-width: 103px;
+    }
+
+
+    .fold-right {
+
+        border-right-width: 145px;
+
+        border-top-width: 103px;
+    }
+
+
+    .fold-bottom {
+
+        border-left-width: 145px;
+
+        border-right-width: 145px;
+
+        border-bottom-width: 103px;
+    }
+
+
+    .envelope-letter {
+
+        width: 240px;
+
+        left: 25px;
+    }
+
+
+    .story-card,
+    .real-letter {
+
+        padding:
+            30px 23px;
+
+        font-size: 19px;
+    }
+
+
+    .strength-card {
+
+        padding:
+            10px 15px;
+
+        font-size: 20px;
+    }
+
+
+    .special-line {
+
+        font-size: 21px;
+    }
+
+
+    .cake {
+
+        transform:
+            scale(.85);
+
+        margin-top: 40px;
+
+        margin-bottom: 20px;
+    }
+}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For Inzaaamaa 💜</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         MUSIC
+    ========================================== -->
+
+    <audio id="bgMusic" src="music.mp3" preload="auto"></audio>
+
+
+    <!-- =========================================
+         PAGE 1 — ENVELOPE
+    ========================================== -->
+
+    <section class="page active" id="page1">
+
+        <div class="background-stars"></div>
+
+        <div class="opening">
+
+            <p class="eyebrow">
+                A LITTLE SOMETHING FOR YOU
+            </p>
+
+            <h1>
+                Before you continue...
+            </h1>
+
+            <p class="subtext">
+                There is a little surprise waiting for you.
+            </p>
+
+
+            <!-- ENVELOPE -->
+
+            <div class="envelope-wrapper" id="envelope">
+
+                <div class="envelope">
+
+                    <!-- Letter -->
+                    <div class="envelope-letter">
+                        <span>For You</span>
+                    </div>
+
+                    <!-- Back -->
+                    <div class="envelope-back"></div>
+
+                    <!-- Flap -->
+                    <div class="envelope-flap"></div>
+
+                    <!-- Front folds -->
+                    <div class="fold-left"></div>
+                    <div class="fold-right"></div>
+                    <div class="fold-bottom"></div>
+
+                    <!-- Wax seal -->
+                    <div class="wax-seal">
+                        ✦
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p class="touch-text">
+                Touch the envelope to open
+                <span>✦</span>
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         PAGE 2 — OUR STORY
+    ========================================== -->
+
+    <section class="page story-page" id="page2">
+
+        <div class="content">
+
+            <p class="chapter">
+                CHAPTER ONE
+            </p>
+
+            <h1 class="title">
+                Our Story
+            </h1>
+
+            <div class="gold-line"></div>
+
+
+            <div class="story-card">
+
+                <p class="reveal">
+                    Sometimes, the most beautiful friendships
+                    begin without us even realizing how
+                    important they will become.
+                </p>
+
+                <p class="reveal">
+                    And somehow, that happened with us.
+                </p>
+
+                <p class="reveal">
+                    What started as just another friendship
+                    slowly became a collection of countless
+                    memories, random conversations, stupid
+                    jokes, endless laughter, little arguments,
+                    and moments that only we could understand.
+                </p>
+
+                <p class="reveal">
+                    We've had our funny moments, our crazy
+                    moments, our "what are we even doing?"
+                    moments 😂, and so many little memories
+                    that I wish I could keep forever.
+                </p>
+
+                <p class="reveal">
+                    Looking back, it's crazy to think how many
+                    moments we've shared and how naturally
+                    you became such an important part of my life.
+                </p>
+
+                <p class="reveal">
+                    I don't think our story needs to be perfect
+                    to be special.
+                </p>
+
+                <p class="reveal">
+                    <strong>
+                        It's special because it's ours.
+                    </strong>
+                </p>
+
+                <p class="reveal">
+                    And even though life keeps changing,
+                    people grow, and sometimes distance puts
+                    miles between us, I hope we never forget
+                    all the little things that made our friendship
+                    what it is today.
+                </p>
+
+                <p class="reveal">
+                    If I could go back and relive some of
+                    those days, I honestly would.
+                </p>
+
+                <p class="reveal">
+                    Because those moments weren't just moments...
+                </p>
+
+                <p class="reveal final-line">
+                    <strong>
+                        They became memories I'll always
+                        carry with me. 💜
+                    </strong>
+                </p>
+
+                <p class="reveal">
+                    And this isn't the end of our story.
+                </p>
+
+                <p class="reveal final-line">
+                    <strong>
+                        It's just another chapter. 🪻
+                    </strong>
+                </p>
+
+            </div>
+
+
+            <button class="next-btn" onclick="goToPage(3)">
+                Continue →
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         PAGE 3 — STRONGER
+    ========================================== -->
+
+    <section class="page strength-page" id="page3">
+
+        <div class="floating-stars"></div>
+
+        <div class="content">
+
+            <p class="chapter">
+                A LITTLE REMINDER
+            </p>
+
+            <h1 class="strength-title">
+                You are stronger<br>
+                than you think.
+            </h1>
+
+            <div class="gold-line"></div>
+
+
+            <div class="strength-card">
+
+                <p class="reveal">
+                    Sometimes life doesn't go exactly the way
+                    we imagine it will.
+                </p>
+
+                <p class="reveal">
+                    There may be days when you feel tired,
+                    lost, confused, or simply not like yourself.
+                </p>
+
+                <p class="reveal">
+                    And on those days, I hope you remember
+                    just how strong you really are.
+                </p>
+
+                <p class="reveal">
+                    You have made it through every difficult
+                    day you've faced so far.
+                </p>
+
+                <p class="reveal">
+                    There are things you've overcome that once
+                    felt impossible, and there are so many
+                    things you've handled without even realizing
+                    how strong you were being.
+                </p>
+
+                <p class="reveal">
+                    You don't always have to be okay.
+                    You don't always have to have everything
+                    figured out.
+                </p>
+
+                <p class="reveal">
+                    It's completely okay to take a step back,
+                    breathe, and give yourself some time.
+                </p>
+
+                <p class="reveal">
+                    Just don't forget to believe in yourself.
+                </p>
+
+                <p class="reveal">
+                    There is so much more waiting for you —
+                    so many places to see, things to experience,
+                    people to meet, dreams to chase, and
+                    beautiful moments you haven't even lived yet. ✨
+                </p>
+
+                <p class="reveal">
+                    So keep going at your own pace.
+                    Be kind to yourself.
+                    Choose yourself.
+                </p>
+
+                <p class="reveal">
+                    And never underestimate the person
+                    you are becoming.
+                </p>
+
+                <p class="reveal strong-ending">
+                    <strong>
+                        You are stronger than you think.<br>
+                        You are capable of more than you know.<br>
+                        And I will always believe in you. 💜
+                    </strong>
+                </p>
+
+                <p class="reveal">
+                    No matter what life brings your way,
+                    I hope you always find a reason to keep smiling. 🪻
+                </p>
+
+            </div>
+
+
+            <button class="next-btn" onclick="goToPage(4)">
+                One more letter →
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         PAGE 4 — LETTER FROM FAR AWAY
+    ========================================== -->
+
+    <section class="page letter-page" id="page4">
+
+        <div class="content">
+
+            <p class="airmail">
+                FROM MY HEART • TO YOU
+            </p>
+
+            <h1 class="title">
+                A Letter From Far Away
+            </h1>
+
+            <div class="gold-line"></div>
+
+
+            <div class="real-letter">
+
+                <p>
+                    There are so many things I could say...
+                </p>
+
+                <p>
+                    But maybe the simplest one is the most important.
+                </p>
+
+                <p class="thank-you">
+                    <strong>
+                        Thank you.
+                    </strong>
+                </p>
+
+                <p>
+                    Thank you for every little thing you've done
+                    for me. Thank you for listening to me,
+                    putting up with my nonsense 😂, making me laugh,
+                    being there for me, and for all those little
+                    moments that probably seemed ordinary at the
+                    time but became some of my favorite memories.
+                </p>
+
+                <p>
+                    Now you're in another country, and sometimes
+                    it feels strange knowing that you're so far away.
+                    I miss the days when we could just meet,
+                    talk about absolutely anything, laugh over the
+                    stupidest things, and make plans without having
+                    to think about the distance between us.
+                </p>
+
+                <p class="special-line">
+                    I wish distance came with a pause button sometimes.
+                </p>
+
+                <p>
+                    But even though we're miles apart now,
+                    I'm really glad that distance can't erase
+                    everything we've shared.
+                </p>
+
+                <p>
+                    Because no matter how many kilometers are
+                    between us, you're still my best friend,
+                    and you'll always have a special place
+                    in my life. 🪻
+                </p>
+
+                <p>
+                    I hope this new chapter brings you beautiful
+                    experiences, amazing people, unforgettable
+                    adventures, and so many reasons to smile.
+                </p>
+
+                <p>
+                    Until the next time we meet,<br>
+                    until the next laugh,<br>
+                    until the next crazy memory...
+                </p>
+
+                <p class="miss-you">
+                    <strong>
+                        I miss you. 🫂
+                    </strong>
+                </p>
+
+                <p>
+                    And thank you for being you.
+                </p>
+
+                <p class="always">
+                    <strong>
+                        Always. 💜
+                    </strong>
+                </p>
+
+                <div class="signature">
+                    AFFI & INZA
+                </div>
+
+            </div>
+
+
+            <button class="next-btn" onclick="goToPage(5)">
+                One last surprise 🎁
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         PAGE 5 — CAKE
+    ========================================== -->
+
+    <section class="page cake-page" id="page5">
+
+        <div class="cake-content">
+
+            <p class="cake-small">
+                OKAY... ENOUGH WITH THE EMOTIONAL STUFF 😂
+            </p>
+
+            <h1 class="cake-title">
+                One Last Thing...
+            </h1>
+
+            <p class="cake-subtitle">
+                It's birthday cake time! 🎂
+            </p>
+
+
+            <!-- CAKE -->
+
+            <div class="cake">
+
+                <div class="candles">
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                    </div>
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                    </div>
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="cake-top"></div>
+
+                <div class="cake-middle"></div>
+
+                <div class="cake-bottom"></div>
+
+            </div>
+
+
+            <button class="wish-button" id="wishButton">
+                ✨ Make a Wish ✨
+            </button>
+
+
+            <div class="final-message" id="finalMessage">
+
+                <h2>
+                    HAPPY BIRTHDAY,<br>
+                    INZAAAAMAA! 🪻🎂
+                </h2>
+
+                <p>
+                    May this new year of your life bring you
+                    endless happiness, beautiful surprises,
+                    amazing adventures, and so many moments
+                    that make you smile.
+                </p>
+
+                <p>
+                    Keep being the crazy, funny, wonderful
+                    person you are. 🪻
+                </p>
+
+                <p>
+                    And no matter where life takes us...
+                </p>
+
+                <p>
+                    <strong>
+                        Here's to more laughs, more memories,
+                        more nonsense, and many more birthdays together. 😂💜
+                    </strong>
+                </p>
+
+                <p>
+                    <strong>
+                        Happy Birthday Di🎂🪻
+                    </strong>
+                </p>
+
+                <p>
+                    No matter how far apart we are,
+                    I'll always be cheering for you.
+                </p>
+
+                <div class="final-signature">
+                    AFFI & INZA
+                    <br>
+                    <span>Always a story worth continuing. ✨</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

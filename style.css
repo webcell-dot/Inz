@@ -1,0 +1,1241 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --lavender: #e8ddf5;
+    --lavender2: #d8c8e9;
+
+    --purple: #5b3a78;
+    --dark-purple: #39234f;
+
+    --cream: #fffdf7;
+
+    --gold: #c9a86a;
+    --gold-light: #ead7a8;
+
+    --text: #51435b;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+
+    color: var(--purple);
+
+    background: var(--lavender);
+}
+
+
+/* =========================================
+   PAGES
+========================================= */
+
+.page {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    overflow-y: auto;
+
+    opacity: 0;
+
+    transform: translateX(40px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+
+.page.active {
+
+    display: block;
+
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+
+/* =========================================
+   PAGE 1
+========================================= */
+
+.home {
+    background: var(--lavender);
+}
+
+
+.opening {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.eyebrow {
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    opacity: .6;
+
+    margin-bottom: 15px;
+}
+
+
+.opening h1 {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(38px, 8vw, 65px);
+
+    font-weight: 500;
+}
+
+
+.subtext {
+
+    margin-top: 8px;
+
+    font-size: 13px;
+
+    opacity: .6;
+}
+
+
+/* =========================================
+   ENVELOPE
+========================================= */
+
+.envelope-wrapper {
+
+    width: 340px;
+
+    height: 235px;
+
+    margin: 55px auto 30px;
+
+    perspective: 1000px;
+
+    cursor: pointer;
+}
+
+
+.envelope {
+
+    width: 100%;
+
+    height: 100%;
+
+    position: relative;
+
+    filter:
+        drop-shadow(
+            0 25px 30px rgba(60,35,80,.20)
+        );
+
+    transition:
+        transform .4s ease;
+}
+
+
+.envelope-wrapper:hover .envelope {
+
+    transform:
+        translateY(-7px);
+}
+
+
+/* Back */
+
+.envelope-back {
+
+    position: absolute;
+
+    inset: 0;
+
+    background: #f8f1e7;
+
+    border: 1px solid var(--gold-light);
+
+    border-radius: 5px;
+
+    z-index: 1;
+}
+
+
+/* Letter */
+
+.envelope-letter {
+
+    position: absolute;
+
+    width: 280px;
+
+    height: 190px;
+
+    left: 30px;
+
+    bottom: 12px;
+
+    background: var(--cream);
+
+    border: 1px solid #dfd0b5;
+
+    box-shadow:
+        0 10px 25px rgba(50,30,70,.16);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 28px;
+
+    letter-spacing: 2px;
+
+    z-index: 2;
+
+    transition:
+        transform 1.4s
+        cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* Flap */
+
+.envelope-flap {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 0;
+
+    height: 0;
+
+    border-left: 170px solid transparent;
+
+    border-right: 170px solid transparent;
+
+    border-top: 125px solid #f5ecdf;
+
+    transform-origin: top center;
+
+    z-index: 5;
+
+    transition:
+        transform 1s
+        cubic-bezier(.2,.7,.2,1);
+}
+
+
+/* Folds */
+
+.fold-left {
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    border-top: 118px solid transparent;
+
+    border-left: 170px solid #eee3f0;
+
+    z-index: 4;
+}
+
+
+.fold-right {
+
+    position: absolute;
+
+    right: 0;
+
+    bottom: 0;
+
+    border-top: 118px solid transparent;
+
+    border-right: 170px solid #eee3f0;
+
+    z-index: 4;
+}
+
+
+.fold-bottom {
+
+    position: absolute;
+
+    bottom: 0;
+
+    left: 0;
+
+    border-left: 170px solid transparent;
+
+    border-right: 170px solid transparent;
+
+    border-bottom: 120px solid #f4eadf;
+
+    z-index: 5;
+}
+
+
+/* Wax */
+
+.wax-seal {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 92px;
+
+    transform: translateX(-50%);
+
+    width: 53px;
+
+    height: 53px;
+
+    border-radius: 50%;
+
+    background: var(--gold);
+
+    border: 3px solid var(--gold-light);
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-shadow:
+        0 5px 15px rgba(70,45,20,.25);
+
+    z-index: 6;
+
+    transition: opacity .5s;
+}
+
+
+/* Open state */
+
+.envelope-wrapper.open
+.envelope-flap {
+
+    transform:
+        rotateX(180deg);
+
+    z-index: 1;
+}
+
+
+.envelope-wrapper.open
+.envelope-letter {
+
+    transform:
+        translateY(-175px);
+
+    z-index: 6;
+}
+
+
+.envelope-wrapper.open
+.wax-seal {
+
+    opacity: 0;
+}
+
+
+.touch-text {
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    opacity: .65;
+
+    animation:
+        breathe 2s infinite;
+}
+
+
+.touch-text span {
+
+    color: var(--gold);
+}
+
+
+/* =========================================
+   COMMON CONTENT
+========================================= */
+
+.content {
+
+    max-width: 720px;
+
+    margin: auto;
+
+    text-align: center;
+
+    padding: 70px 20px 100px;
+}
+
+
+.chapter {
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    opacity: .6;
+}
+
+
+.title {
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(50px, 10vw, 80px);
+
+    font-weight: 500;
+
+    margin: 12px 0;
+}
+
+
+.gold-line {
+
+    width: 70px;
+
+    height: 1px;
+
+    background: var(--gold);
+
+    margin: 20px auto 45px;
+}
+
+
+/* =========================================
+   STORY
+========================================= */
+
+.story-page {
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(255,255,255,.8),
+            transparent 30%
+        ),
+        var(--lavender);
+}
+
+
+.story-card,
+.strength-card,
+.real-letter {
+
+    background:
+        rgba(255,253,247,.94);
+
+    border:
+        1px solid #e3d5ba;
+
+    box-shadow:
+        0 25px 60px
+        rgba(65,40,80,.12);
+
+    padding: 45px;
+
+    text-align: left;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 21px;
+
+    line-height: 1.8;
+
+    color: var(--text);
+}
+
+
+.story-card p,
+.strength-card p,
+.real-letter p {
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   TEXT REVEAL
+========================================= */
+
+.reveal {
+
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+
+.reveal.visible {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+.final-line {
+
+    color: var(--purple);
+
+    text-align: center;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.next-btn {
+
+    margin-top: 35px;
+
+    padding:
+        13px 30px;
+
+    border:
+        1px solid var(--gold);
+
+    border-radius: 30px;
+
+    background:
+        transparent;
+
+    color: var(--purple);
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+
+    transition: .3s;
+}
+
+
+.next-btn:hover {
+
+    background: var(--purple);
+
+    color: white;
+}
+
+
+/* =========================================
+   STRENGTH PAGE
+========================================= */
+
+.strength-page {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #f4edfa,
+            var(--lavender)
+        );
+}
+
+
+.strength-page .content {
+
+    max-width: 800px;
+}
+
+
+.strength-title {
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(48px, 10vw, 82px);
+
+    line-height: .95;
+
+    font-weight: 500;
+
+    color: var(--dark-purple);
+
+    margin:
+        20px 0 25px;
+}
+
+
+.strength-card {
+
+    text-align: center;
+
+    background:
+        rgba(255,255,255,.38);
+
+    border: none;
+
+    box-shadow: none;
+
+    font-size: 22px;
+
+    padding: 20px 30px;
+
+    color: #594b63;
+}
+
+
+.strong-ending {
+
+    color: var(--purple);
+
+    font-size: 25px;
+}
+
+
+/* =========================================
+   PAGE 4
+========================================= */
+
+.letter-page {
+
+    background:
+        linear-gradient(
+            rgba(232,221,245,.85),
+            rgba(232,221,245,.85)
+        );
+}
+
+
+.airmail {
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    color: var(--gold);
+
+    margin-bottom: 10px;
+}
+
+
+.real-letter {
+
+    position: relative;
+
+    padding:
+        50px 45px;
+}
+
+
+.real-letter::before {
+
+    content: "✦";
+
+    position: absolute;
+
+    top: 18px;
+
+    right: 25px;
+
+    color: var(--gold);
+
+    font-size: 20px;
+}
+
+
+.thank-you {
+
+    text-align: center;
+
+    font-size: 35px;
+
+    color: var(--purple);
+}
+
+
+.special-line {
+
+    text-align: center;
+
+    color: var(--purple);
+
+    font-size: 24px;
+}
+
+
+.miss-you {
+
+    text-align: center;
+
+    font-size: 30px;
+
+    color: var(--purple);
+}
+
+
+.always {
+
+    text-align: center;
+
+    font-size: 28px;
+}
+
+
+.signature {
+
+    margin-top: 45px;
+
+    text-align: center;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 28px;
+
+    letter-spacing: 5px;
+
+    color: var(--purple);
+}
+
+
+/* =========================================
+   PAGE 5 — CAKE
+========================================= */
+
+.cake-page {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #76558f,
+            #39234f
+        );
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    overflow-y: auto;
+}
+
+
+.cake-content {
+
+    width: 100%;
+
+    max-width: 700px;
+
+    padding: 50px 20px;
+}
+
+
+.cake-small {
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    opacity: .7;
+}
+
+
+.cake-title {
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(50px, 10vw, 80px);
+
+    font-weight: 500;
+
+    margin: 10px 0;
+}
+
+
+.cake-subtitle {
+
+    opacity: .75;
+
+    letter-spacing: 2px;
+
+    font-size: 13px;
+}
+
+
+/* Cake */
+
+.cake {
+
+    width: 260px;
+
+    height: 190px;
+
+    margin:
+        60px auto 40px;
+
+    position: relative;
+}
+
+
+.cake-bottom {
+
+    position: absolute;
+
+    bottom: 0;
+
+    left: 0;
+
+    width: 260px;
+
+    height: 85px;
+
+    background: #fffdf7;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 15px 30px
+        rgba(0,0,0,.25);
+}
+
+
+.cake-middle {
+
+    position: absolute;
+
+    bottom: 70px;
+
+    left: 20px;
+
+    width: 220px;
+
+    height: 70px;
+
+    background: #d9c4e8;
+
+    border-radius:
+        10px 10px 6px 6px;
+}
+
+
+.cake-top {
+
+    position: absolute;
+
+    bottom: 125px;
+
+    left: 35px;
+
+    width: 190px;
+
+    height: 45px;
+
+    background: #fffdf7;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 7px 10px
+        rgba(0,0,0,.15);
+}
+
+
+/* Candles */
+
+.candles {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: 165px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 28px;
+
+    z-index: 5;
+}
+
+
+.candle {
+
+    width: 10px;
+
+    height: 38px;
+
+    background: var(--gold-light);
+
+    border-radius: 3px;
+
+    position: relative;
+}
+
+
+.flame {
+
+    position: absolute;
+
+    width: 14px;
+
+    height: 20px;
+
+    left: -2px;
+
+    top: -22px;
+
+    background: #ffd98a;
+
+    border-radius:
+        50% 50% 50% 50%;
+
+    box-shadow:
+        0 0 15px #ffd98a;
+
+    animation:
+        flame 1s infinite alternate;
+}
+
+
+.blown .flame {
+
+    display: none;
+}
+
+
+/* Wish button */
+
+.wish-button {
+
+    padding:
+        14px 32px;
+
+    border:
+        1px solid var(--gold-light);
+
+    border-radius: 30px;
+
+    background:
+        transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    letter-spacing: 1px;
+
+    transition: .3s;
+}
+
+
+.wish-button:hover {
+
+    background:
+        var(--gold-light);
+
+    color:
+        var(--dark-purple);
+}
+
+
+/* Final */
+
+.final-message {
+
+    display: none;
+
+    animation:
+        appear 1.5s ease;
+}
+
+
+.final-message.show {
+
+    display: block;
+}
+
+
+.final-message h2 {
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size:
+        clamp(40px, 8vw, 65px);
+
+    font-weight: 500;
+
+    margin-bottom: 25px;
+}
+
+
+.final-message p {
+
+    max-width: 600px;
+
+    margin:
+        0 auto 20px;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 21px;
+
+    line-height: 1.6;
+}
+
+
+.final-signature {
+
+    margin-top: 30px;
+
+    font-family:
+        'Cormorant Garamond',
+        serif;
+
+    font-size: 28px;
+
+    letter-spacing: 4px;
+}
+
+
+.final-signature span {
+
+    font-size: 15px;
+
+    letter-spacing: 1px;
+
+    opacity: .7;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes breathe {
+
+    0%,100% {
+        opacity: .45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+@keyframes flame {
+
+    from {
+        transform:
+            scale(1);
+    }
+
+    to {
+        transform:
+            scale(1.15)
+            translateY(-2px);
+    }
+}
+
+
+@keyframes appear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:500px) {
+
+    .envelope-wrapper {
+
+        width: 290px;
+
+        height: 205px;
+    }
+
+
+    .envelope-flap {
+
+        border-left-width: 145px;
+
+        border-right-width: 145px;
+
+        border-top-width: 105px;
+    }
+
+
+    .fold-left {
+
+        border-left-width: 145px;
+
+        border-top-width: 103px;
+    }
+
+
+    .fold-right {
+
+        border-right-width: 145px;
+
+        border-top-width: 103px;
+    }
+
+
+    .fold-bottom {
+
+        border-left-width: 145px;
+
+        border-right-width: 145px;
+
+        border-bottom-width: 103px;
+    }
+
+
+    .envelope-letter {
+
+        width: 240px;
+
+        left: 25px;
+    }
+
+
+    .story-card,
+    .real-letter {
+
+        padding:
+            30px 23px;
+
+        font-size: 19px;
+    }
+
+
+    .strength-card {
+
+        padding:
+            10px 15px;
+
+        font-size: 20px;
+    }
+
+
+    .special-line {
+
+        font-size: 21px;
+    }
+
+
+    .cake {
+
+        transform:
+            scale(.85);
+
+        margin-top: 40px;
+
+        margin-bottom: 20px;
+    }
+}
